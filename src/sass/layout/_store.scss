@@ -1,0 +1,65 @@
+.shop{
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 50px;
+    display: grid;
+    gap: 30px;
+
+    @media screen and (min-width: map-get($map: $breackpoint, $key: 'mobile')){
+        grid-template-columns: repeat(2, 1fr);
+    }
+    @media screen and (min-width: 850px){
+        grid-template-columns: repeat(3, 1fr);
+    }
+    @media screen and (min-width: map-get($map: $breackpoint, $key: 'large-display')){
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    h1{
+        text-align: center;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+    }
+
+    &.shop__item{
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        border-radius: 10px;
+        gap: 0;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0 5px 20px -5px black;
+
+        img{
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            border-radius: 10px 10px 0 0;
+        }
+
+        &.shop__item__info{
+            box-shadow: none;
+            padding: 0 20px;
+            height: 50px;
+            display: flex;
+            justify-content: space-between;
+            box-sizing: border-box;
+            border-radius: 0 0 10px 10px;
+            flex-direction: row;
+
+            h2{
+                line-height: 50px;
+                font-size: 20px;
+                color: $color-primary;
+            }
+
+            p{
+                line-height: 50px;
+                color: $color-secondary;
+                font-weight: bold;
+            }
+        }
+    }
+}
