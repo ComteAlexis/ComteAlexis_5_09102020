@@ -1,0 +1,31 @@
+footer{
+    background-color: rgb(51, 51, 51);
+    width: 100%;
+    box-sizing: border-box;
+    padding:50px 100px;
+    display: flex;
+    margin-top: 30px;
+
+    @media screen and (max-width: map-get($map: $breackpoint, $key: 'mobile')){
+        padding: 30px 20px;
+    }
+
+    h2{
+        color: $color-primary;
+        margin-bottom: 20px;
+    }
+
+    ul{
+        margin-left: 10px;
+
+        li{
+            margin-bottom: 10px;
+            a{
+                color: #fff;
+            }
+        }
+        
+    }
+
+    
+}

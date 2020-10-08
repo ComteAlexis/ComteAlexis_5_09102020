@@ -146,4 +146,31 @@ header .wrapper {
   font-weight: bold;
 }
 
+footer {
+  background-color: #333333;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 50px 100px;
+  display: flex;
+  margin-top: 30px;
+}
+@media screen and (max-width: 600px) {
+  footer {
+    padding: 30px 20px;
+  }
+}
+footer h2 {
+  color: #8763F5;
+  margin-bottom: 20px;
+}
+footer ul {
+  margin-left: 10px;
+}
+footer ul li {
+  margin-bottom: 10px;
+}
+footer ul li a {
+  color: #fff;
+}
+
 /*# sourceMappingURL=main.css.map */
