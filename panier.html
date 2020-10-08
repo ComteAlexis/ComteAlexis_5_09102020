@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='./src/css/main.css' rel='stylesheet' type='text/css'>
+    <script src="./src/js/script.js" type='module' defer></script>
+    <title>Orinoco</title>
+</head>
+<body>
+    <header>
+        <div class="wrapper wrapper--header">
+            <h1 class="heading heading--header">Orinoco</h1>
+            <ul class="nav nav--header">
+                <li><a href='./index.html'>Acceuil</a></li>
+                <li class='active'><a href='./panier.html'>Panier</a></li>
+            </ul>
+        </div>
+    </header>
+    <section id='panier'>
+        <div class="cart">
+            <div class="cart cart__item">
+                <div class="cart cart__item cart__item__image">
+                    <img src="../back/JWDP5/images/oak_1.jpg" alt="">
+                </div>
+                <div class="cart cart__item cart__item__info">
+                    <h2>Nom du produit</h2>
+                    <p>Brève déscription de l'article qui vous est présenté en ce moment même. Nous ésperons vous satisfaire.</p>
+                    <div class="cart cart__item cart__item__info cart__item__info__price">
+                        <p>Prix:</p>
+                        <p>40€</p>
+                    </div>
+                </div>
+                <div class="cart cart__item cart__item__quantity">
+                    <label for="quantity">Quantité</label>
+                    <input type="number" name="quantity" id="quantity">
+                </div>
+                <button class="btn btn--delete-cart">Supprimer du panier</button>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="contact">
+            <h2>A propos de nous</h2>
+            <ul>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">Nous rejoindre</a></li>
+                <li><a href="#">Partager</a></li>
+            </ul>
+        </div>
+    </footer>
+</body>
+</html> 
