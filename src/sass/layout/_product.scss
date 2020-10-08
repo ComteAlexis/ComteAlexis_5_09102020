@@ -1,0 +1,80 @@
+.product{
+    width: 100%;
+    display: grid;
+    gap: 15px;
+    box-sizing: border-box;
+    padding: 0 20px;
+    margin-top: 20px;
+
+    @media screen and (min-width: map-get($map: $breackpoint, $key: 'tablette')){
+        grid-template-columns: repeat(2, 1fr);
+    }
+    @media screen and (min-width: 1025px) and (max-width: map-get($map: $breackpoint, $key: 'tablette')){
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    &.product__image{
+        display: flex;
+        align-items: center;
+
+        @media screen and (min-width: 1025px){
+            min-height: 500px;
+        }
+        img{
+        width: 100%;
+        border-radius: 10px;
+        box-shadow: 0 10px 20px -5px black;
+    }
+    } 
+    &.product__info{
+        grid-template: none;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        h2{
+            color: $color-primary;
+        }
+        p{
+            margin: 5px 0;
+            line-height: 25px;
+            flex: 1;
+        }
+        &.product__info__couleur{
+            margin: 0;
+            margin-top: 10px;
+            padding: 0;
+            flex-direction: row;
+            justify-content: space-between;
+
+            label{
+                font-weight: bold;
+            }
+
+            select{
+                flex: 1;
+                margin-left: 20px;
+            }
+        }
+
+        &.product__info__price{
+            flex-direction: row;
+            position: relative;
+            margin: 0;
+            padding: 0;
+            justify-content: space-between;
+            margin: 20px 0;
+            width: 100%;
+
+            p:nth-child(1){
+                font-weight: bold;
+            }
+            p:nth-child(2){
+                font-weight: bold;
+                font-size: 45px;
+                flex: 1;
+                text-align: right;
+                color: $color-secondary;
+            }
+        }
+    }
+}

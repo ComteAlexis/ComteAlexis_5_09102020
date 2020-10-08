@@ -2,12 +2,14 @@
 
 @import './utils/variable';
 
-@import './components/heading';
+@import './components/heading',
+        './components/btn';
 
 @import './layout/header',
         './layout/wrapper',
         './layout/nav',
         './layout/store',
-        './layout/footer';
+        './layout/footer',
+        './layout/product';
 
 @import './pages/index';

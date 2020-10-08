@@ -33,6 +33,15 @@ body, ul, li, a, h1, h2, h3, h4, h5, h6, p, div, img {
   text-align: center;
 }
 
+.btn.btn--add-cart {
+  height: 50px;
+  border-color: transparent;
+  border-radius: 10px;
+  background-color: #8763F5;
+  color: #fff;
+  font-size: 20px;
+}
+
 header .wrapper {
   overflow: hidden;
 }
@@ -171,6 +180,86 @@ footer ul li {
 }
 footer ul li a {
   color: #fff;
+}
+
+.product {
+  width: 100%;
+  display: grid;
+  gap: 15px;
+  box-sizing: border-box;
+  padding: 0 20px;
+  margin-top: 20px;
+}
+@media screen and (min-width: 1200px) {
+  .product {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media screen and (min-width: 1025px) and (max-width: 1200px) {
+  .product {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+.product.product__image {
+  display: flex;
+  align-items: center;
+}
+@media screen and (min-width: 1025px) {
+  .product.product__image {
+    min-height: 500px;
+  }
+}
+.product.product__image img {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 10px 20px -5px black;
+}
+.product.product__info {
+  grid-template: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.product.product__info h2 {
+  color: #8763F5;
+}
+.product.product__info p {
+  margin: 5px 0;
+  line-height: 25px;
+  flex: 1;
+}
+.product.product__info.product__info__couleur {
+  margin: 0;
+  margin-top: 10px;
+  padding: 0;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.product.product__info.product__info__couleur label {
+  font-weight: bold;
+}
+.product.product__info.product__info__couleur select {
+  flex: 1;
+  margin-left: 20px;
+}
+.product.product__info.product__info__price {
+  flex-direction: row;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  justify-content: space-between;
+  margin: 20px 0;
+  width: 100%;
+}
+.product.product__info.product__info__price p:nth-child(1) {
+  font-weight: bold;
+}
+.product.product__info.product__info__price p:nth-child(2) {
+  font-weight: bold;
+  font-size: 45px;
+  flex: 1;
+  text-align: right;
+  color: #DB8D34;
 }
 
 /*# sourceMappingURL=main.css.map */
