@@ -1,0 +1,25 @@
+.nav{
+    display: flex;
+
+    li{
+        flex: 1;
+        text-align: center;
+        border-bottom: 2px solid $color-secondary;
+        line-height: 50px;
+
+        @media screen and (min-width: map-get($map: $breackpoint, $key: 'mobile')){
+            padding: 5px 20px;
+            border-color: transparent;
+        }
+
+        a{
+            color: $color-primary;
+        }
+        &.active{
+            border-color: darken($color-secondary, 30);
+            @media screen and (min-width: map-get($map: $breackpoint, $key: 'mobile')){
+                border-color: transparent;
+            }
+        }
+    }
+}

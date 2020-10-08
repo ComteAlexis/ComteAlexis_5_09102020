@@ -1,0 +1,11 @@
+.wrapper{
+        margin: 0 auto;
+    &.wrapper--header{
+        display: grid;
+        grid-template-rows: repeat(2, 60px);
+        @media screen and (min-width: map-get($map: $breackpoint, $key: 'mobile')){
+            display: flex;
+            padding: 0 50px;
+        }
+    }
+}

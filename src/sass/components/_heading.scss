@@ -1,0 +1,13 @@
+.heading{
+
+    &.heading--header{
+        font-size: 30px;
+        line-height: 50px;
+        width: 100%;
+        color: $color-primary;
+        text-align: center;
+        @media screen and (min-width: map-get($map: $breackpoint, $key: 'mobile')){
+            text-align: left;
+        }
+    }
+}

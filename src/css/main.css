@@ -1,0 +1,73 @@
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+body, ul, li, a, h1, h2, h3, h4, h5, h6, p {
+  padding: 0;
+  margin: 0;
+}
+
+.heading.heading--header {
+  font-size: 30px;
+  line-height: 50px;
+  width: 100%;
+  color: #8763F5;
+  text-align: center;
+}
+@media screen and (min-width: 600px) {
+  .heading.heading--header {
+    text-align: left;
+  }
+}
+
+header .wrapper {
+  overflow: hidden;
+}
+
+.wrapper {
+  margin: 0 auto;
+}
+.wrapper.wrapper--header {
+  display: grid;
+  grid-template-rows: repeat(2, 60px);
+}
+@media screen and (min-width: 600px) {
+  .wrapper.wrapper--header {
+    display: flex;
+    padding: 0 50px;
+  }
+}
+
+.nav {
+  display: flex;
+}
+.nav li {
+  flex: 1;
+  text-align: center;
+  border-bottom: 2px solid #DB8D34;
+  line-height: 50px;
+}
+@media screen and (min-width: 600px) {
+  .nav li {
+    padding: 5px 20px;
+    border-color: transparent;
+  }
+}
+.nav li a {
+  color: #8763F5;
+}
+.nav li.active {
+  border-color: #643e12;
+}
+@media screen and (min-width: 600px) {
+  .nav li.active {
+    border-color: transparent;
+  }
+}
+
+/*# sourceMappingURL=main.css.map */
