@@ -1,0 +1,36 @@
+.total{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    max-width: 1200px;
+    padding: 0 20px;
+    box-sizing: border-box;
+    h2{
+        padding: 0;
+        margin: 10px 0 30px 0; 
+        font-size: 20px;
+    }
+    &.total__desc{
+        display: flex;
+        padding: 0;
+        margin: 0;
+        order: 1;
+        justify-content: space-between;
+        margin-right: 50px;
+        grid-row: 2 / 3;
+
+        p:nth-child(2){
+            font-size: 25px;
+        }
+    }
+}
+
+.valider-commande{
+    display: flex;
+}
+
+#panier{
+    @media screen and (min-width: map-get($map: $breackpoint, $key: 'tablette')){
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

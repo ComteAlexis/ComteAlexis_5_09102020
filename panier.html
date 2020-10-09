@@ -38,6 +38,36 @@
                 <button class="btn btn--delete-cart">Supprimer du panier</button>
             </div>
         </div>
+        <div class="valider-commande">
+            <form class='form' action="#" method='POST'>
+                <div class="form form__group">
+                    <div class="form form__input">
+                        <label for="firstName">Prénom: </label><input type="text" id='firstName'>
+                    </div>
+                    <div class="form form__input">
+                        <label for="lastName">Nom: </label><input type="text" id='lastName'>
+                    </div>
+                </div>
+                <div class="form form__input">
+                    <label for="address">Addresse: </label><input type="text" id='adress'>
+                </div>
+                <div class="form form__input">
+                    <label for="email">e-Mail: </label><input type="email" id='email'>
+                </div>
+                <div class="form form__input">
+                    <label for="city">Ville: </label><input type="text" id='city'>
+                </div>
+                <div class="total">
+                    <h2>Total de votre commande:</h2>
+                    <div class="total total__desc">
+                        <p>Sous Total<br>(<span></span>)</p>
+                        <p>40€</p>
+                    </div>
+                    <input type='submit' value='Valider ma commande' class="btn btn--cart-submit">
+                </div>
+            </form>
+        </div>
+        
     </section>
 
     <footer>

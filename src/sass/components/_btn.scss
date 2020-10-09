@@ -1,4 +1,6 @@
 .btn{
+    align-items: center;
+
     &.btn--add-cart{
         height: 50px;
         border-color: transparent;
@@ -6,5 +8,17 @@
         background-color: $color-primary;
         color: #fff;
         font-size: 20px;
+    }
+
+    &.btn--cart-submit{
+        grid-column: 2 / 3;
+        grid-row: 2 / 3;
+        background-color: $color-primary;
+        color: white;
+        height: 40px;
+        width: 80%;
+        margin: 0 auto;
+        border: transparent;
+        border-radius: 10px;
     }
 }

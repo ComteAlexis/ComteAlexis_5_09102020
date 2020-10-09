@@ -1,0 +1,38 @@
+.form{
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    padding: 0 20px;
+    flex: 1;
+
+    &.form__group{
+        flex-direction: row;
+        margin: 0;
+        padding: 0;
+        & > .form.form__input{
+            color: $color-secondary;
+            display: block;
+            text-align: left;
+            input{
+                width: 100%;
+            }
+            
+        }
+    }
+
+    &.form__input{
+        display: flex;
+        margin: 10px 0;
+        label{
+            color: $color-secondary;
+            display: block;
+            width: 70px;
+            text-align: left;
+            margin-bottom: 10px;
+        }
+        input{
+            height: 30px;
+            box-sizing: border-box;
+        }
+    }
+}
