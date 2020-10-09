@@ -7,6 +7,12 @@ a {
   color: black;
 }
 
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 body, ul, li, a, h1, h2, h3, h4, h5, h6, p, div, img {
   padding: 0;
   margin: 0;
@@ -408,11 +414,45 @@ footer ul li a {
   display: flex;
 }
 
+#panier {
+  flex: 1;
+}
 @media screen and (min-width: 1200px) {
   #panier {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
   }
+}
+
+#order {
+  flex: 1;
+  box-sizing: border-box;
+  padding: 30px 20px;
+}
+#order h2 {
+  text-align: center;
+  font-size: 25px;
+  color: #DB8D34;
+  margin-bottom: 20px;
+}
+#order p:nth-child(2) {
+  font-weight: bold;
+}
+#order p:nth-child(3) {
+  margin-top: 20px;
+  line-height: 25px;
+}
+#order p:nth-child(3) a {
+  color: #8763F5;
+  text-decoration: underline;
+}
+
+#boutique {
+  flex: 1;
+}
+
+#article {
+  flex: 1;
 }
 
 /*# sourceMappingURL=main.css.map */

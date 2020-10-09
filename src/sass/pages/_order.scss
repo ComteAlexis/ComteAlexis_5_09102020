@@ -1,0 +1,24 @@
+#order{
+    flex: 1;
+    box-sizing: border-box;
+    padding: 30px 20px;
+    h2{
+        text-align: center;
+        font-size: 25px;
+        color: $color-secondary;
+        margin-bottom: 20px;
+    }
+
+    p:nth-child(2){
+        font-weight: bold;
+    }
+
+    p:nth-child(3){
+        margin-top: 20px;
+        line-height: 25px;
+        a{
+            color: $color-primary;
+            text-decoration: underline;
+        }
+    }
+}
