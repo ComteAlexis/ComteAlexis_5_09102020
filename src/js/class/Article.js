@@ -1,10 +1,11 @@
 export default class Article{
-    constructor(id, name, description, imageUrl, price){
-        this.id = id
-        this.name = name
-        this.description = description
-        this.imageUrl = imageUrl
-        this.price = price
+    constructor(info){
+        this.id = info._id
+        this.name = info.name
+        this.description = info.description
+        this.imageUrl = info.imageUrl
+        this.price = info.price
+        this.color = info.colors
     }
 
     createBoutiqueArticle(){
@@ -18,7 +19,6 @@ export default class Article{
         shopItem.classList.add('shop', 'shop__item')
         redirectLinkItem.setAttribute('href', 'product.html?id=' + this.id)
         image.setAttribute('src', this.imageUrl)
-        console.log(image)
         shopItemInfo.classList.add('shop', 'shop__item', 'shop__item__info')
         nomItem.textContent = this.name
         prixItem.textContent = this.price
@@ -34,16 +34,73 @@ export default class Article{
 
     }
 
-    static getArticleInfo(ids = []){
+    createProductArticle(){
+        const product = document.createElement('div')
+        const productImage = document.createElement('div')
+        const image = document.createElement('img')
+        const productInfo = document.createElement('div')
+        const name = document.createElement('h2')
+        const description = document.createElement('p')
+        const productInfoColor = document.createElement('div')
+        const labelColor = document.createElement('label')
+        const selectColor = document.createElement('select')
+        const productInfoPrice = document.createElement('div')
+        const priceName = document.createElement('p')
+        const price = document.createElement('p')
+        const button = document.createElement('button')
+
+        name.textContent = this.name
+        description.textContent = this.description
+        image.setAttribute('src', this.imageUrl)
+        priceName.textContent= 'Prix:'
+        price.textContent = this.price + '€'
+
+        product.classList.add('product')
+        productInfo.classList.add('product', 'product__info')
+        productInfoColor.classList.add('product','product__info' , 'product__info__couleur')
+        productInfoPrice.classList.add('product', 'product__info', 'product__info__price')
+        productImage.classList.add('product', 'product__image')
+        this.color.forEach((color) => {
+            const colorOption = document.createElement('option')
+            colorOption.textContent = color
+            selectColor.appendChild(colorOption)
+        })
+        labelColor.textContent = 'Couleur:'
+        button.classList.add('btn', 'btn--add-cart')
+        button.textContent = 'Ajouter au panier'
+
+        productImage.appendChild(image)
+        product.appendChild(productImage)
+        productInfo.appendChild(name)
+        productInfo.appendChild(description)
+        productInfoColor.appendChild(labelColor)
+        productInfoColor.appendChild(selectColor)
+        productInfoPrice.appendChild(priceName)
+        productInfoPrice.appendChild(price)
+        productInfo.appendChild(productInfoColor)
+        productInfo.appendChild(productInfoPrice)
+        product.appendChild(productInfo)
+        product.appendChild(button)
+
+        this.article = product
+        return this.article
+    }
+
+    static getArticleInfo(id = ''){
+        let result = []
         return new Promise((resolve, reject) => {
-            if(ids.length > 0){
-                let result = []
-                ids.forEach(async (id) => {
-                    const item = await this.getOneArticle(id)
-                    result.push(item)
+            if(id != null){
+                const request = new XMLHttpRequest()
+                request.open('GET', 'http://localhost:3000/api/teddies/' + id)
+                request.addEventListener('readystatechange', (e) => {
+                    if(request.readyState == '4'){
+                        resolve(JSON.parse(request.response))
+                    }
                 })
-                    resolve(result)
+                request.send()
             }
+
+
             else{
                 const request = new XMLHttpRequest()
                 request.open('GET', 'http://localhost:3000/api/teddies')
@@ -64,11 +121,10 @@ export default class Article{
             request.open('GET', 'http://localhost:3000/api/teddies/' + id)
             request.addEventListener('readystatechange', (e) => {
                 if(request.readyState == '4'){
-                    const response = JSON.parse(request.response)
-                    resolve(JSON.parse(request.response))
+                    const response = request.response
+                    resolve(response)
                 }
             })
-
             request.send()
         })
     }
