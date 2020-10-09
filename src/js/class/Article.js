@@ -4,7 +4,7 @@ export default class Article{
         this.name = info.name
         this.description = info.description
         this.imageUrl = info.imageUrl
-        this.price = info.price
+        this.price = info.price / 100
         this.color = info.colors
     }
 
@@ -21,7 +21,7 @@ export default class Article{
         image.setAttribute('src', this.imageUrl)
         shopItemInfo.classList.add('shop', 'shop__item', 'shop__item__info')
         nomItem.textContent = this.name
-        prixItem.textContent = this.price
+        prixItem.textContent = this.price + '€'
 
         shopItemInfo.appendChild(nomItem)
         shopItemInfo.appendChild(prixItem)
@@ -48,6 +48,7 @@ export default class Article{
         const priceName = document.createElement('p')
         const price = document.createElement('p')
         const button = document.createElement('button')
+        const self = this;
 
         name.textContent = this.name
         description.textContent = this.description
@@ -68,6 +69,37 @@ export default class Article{
         labelColor.textContent = 'Couleur:'
         button.classList.add('btn', 'btn--add-cart')
         button.textContent = 'Ajouter au panier'
+        button.addEventListener('click', (e) => {
+            function verifKeys(key){
+                return self.id == key
+            }
+            if(localStorage.panier != undefined){
+                let panier = JSON.parse(localStorage.panier)
+                const keys = Object.keys(panier)
+                const findItem = keys.find(verifKeys)
+                if(findItem != undefined){
+                    panier[findItem].quantity++
+                    localStorage.panier = JSON.stringify(panier)
+                }
+                else{
+                    panier[self.id] = {
+                        id : self.id,
+                        quantity : 1
+                    }
+                    localStorage.panier = JSON.stringify(panier)
+                }
+            }
+            else{
+                const key = self.id
+                const object = new Object
+                object[self.id] = {
+                    id : self.id,
+                    quantity : 1
+                }
+                localStorage.setItem('panier', JSON.stringify(object))
+            }
+            
+        })
 
         productImage.appendChild(image)
         product.appendChild(productImage)
