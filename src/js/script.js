@@ -1,4 +1,5 @@
 import Article from './class/Article.js'
+import Panier from './class/Panier.js'
 
 const shop = document.querySelector('.shop')
 const product = document.querySelector('#article')
@@ -50,5 +51,8 @@ if(path[path.length - 1].match(/(product\.html)/gm)){
 }
 
 if(path[path.length - 1].match(/(panier\.html)/gm)){
-    
+    /*
+        Ne pas stocker de class dans un object (fait bug l'obj)
+    */
+    new Panier(localStorage).createPanier()
 }

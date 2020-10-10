@@ -83,7 +83,6 @@ export default class Article{
                 }
                 else{
                     panier[self.id] = {
-                        id : self.id,
                         quantity : 1
                     }
                     localStorage.panier = JSON.stringify(panier)
@@ -93,7 +92,6 @@ export default class Article{
                 const key = self.id
                 const object = new Object
                 object[self.id] = {
-                    id : self.id,
                     quantity : 1
                 }
                 localStorage.setItem('panier', JSON.stringify(object))
@@ -116,6 +114,10 @@ export default class Article{
 
         this.article = product
         return this.article
+    }
+
+    createPanierArticle(){
+        
     }
 
     static getArticleInfo(id = ''){
