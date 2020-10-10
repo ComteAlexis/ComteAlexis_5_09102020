@@ -96,6 +96,8 @@ export default class Article{
                 }
                 localStorage.setItem('panier', JSON.stringify(object))
             }
+
+            window.location.href = 'panier.html'
             
         })
 
@@ -116,8 +118,75 @@ export default class Article{
         return this.article
     }
 
-    createPanierArticle(){
-        
+    createPanierArticle(panier){
+        const self = this
+        this.parent = panier.panierDiv
+        const cartItem = document.createElement('div')
+        const cartItemImage = document.createElement('div')
+        const image = document.createElement('img')
+        const cartitemInfo = document.createElement('div')
+        const name = document.createElement('h2')
+        const description = document.createElement('p')
+        const cartItemInfoPrice = document.createElement('div')
+        const prixLabel = document.createElement('p')
+        const prixInfo = document.createElement('p')
+        const cartItemQuantity = document.createElement('div')
+        const quantityLabel = document.createElement('label')
+        const quantityInput = document.createElement('input')
+        const deleteButton = document.createElement('button')
+
+
+        cartItem.classList.add('cart', 'cart__item')
+        cartItemImage.classList.add('cart', 'cart__item', 'cart__item__image')
+        image.setAttribute('src', this.imageUrl)
+        image.setAttribute('alt', 'Peluche ' + this.nom)
+        cartitemInfo.classList.add('cart', 'cart__item', 'cart__item__info')
+        name.textContent = this.name
+        description.textContent = this.description
+        cartItemInfoPrice.classList.add('cart', 'cart__item', 'cart__item__info', 'cart__item__info__price')
+        prixLabel.textContent = 'Prix:'
+        prixInfo.textContent = this.price * panier.panier[this.id].quantity +'€'
+        cartItemQuantity.classList.add('cart', 'cart__item', 'cart__item__quantity')
+        quantityLabel.setAttribute('for', 'quantity')
+        quantityLabel.textContent = 'Quantité'
+        quantityInput.setAttribute('type', 'number')
+        quantityInput.setAttribute('name', 'quantity')
+        quantityInput.setAttribute('id', 'quantity')
+        quantityInput.setAttribute('value', panier.panier[this.id].quantity)
+        deleteButton.classList.add('btn', 'btn--delete-cart')
+        deleteButton.textContent = 'Supprimer du panier'
+
+        quantityInput.addEventListener('change', (e) => {
+            if(!panier.updateQuantity(self.id, e.target.value)){
+                e.target.value = 1
+            }
+            prixInfo.textContent = self.price * panier.panier[this.id].quantity +'€'
+        })
+
+        deleteButton.addEventListener('click', (e) => {
+            if(panier.deleteArticle(self.id)){
+                self.parent.removeChild(self.article)
+            }
+        })
+
+
+
+        cartItem.appendChild(cartItemImage)
+        cartItemImage.appendChild(image)
+        cartItem.appendChild(cartitemInfo)
+        cartitemInfo.appendChild(name)
+        cartitemInfo.appendChild(description)
+        cartitemInfo.appendChild(cartItemInfoPrice)
+        cartItemInfoPrice.appendChild(prixLabel)
+        cartItemInfoPrice.appendChild(prixInfo)
+        cartItem.appendChild(cartItemQuantity)
+        cartItemQuantity.appendChild(quantityLabel)
+        cartItemQuantity.appendChild(quantityInput)
+        cartItem.appendChild(deleteButton)
+
+
+        this.article = cartItem
+        return this.article
     }
 
     static getArticleInfo(id = ''){

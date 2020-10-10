@@ -51,8 +51,43 @@ if(path[path.length - 1].match(/(product\.html)/gm)){
 }
 
 if(path[path.length - 1].match(/(panier\.html)/gm)){
-    /*
-        Ne pas stocker de class dans un object (fait bug l'obj)
-    */
-    new Panier(localStorage).createPanier()
+    if(localStorage['panier'] != null){
+        const panier =  new Panier(localStorage)
+        panier.createPanier()
+
+        const form = document.querySelector('.form')
+        form.addEventListener('submit', (e) => {
+            e.preventDefault()
+            console.log(e)
+            const firstName = form.querySelector('#firstName').value
+            const lastName = form.querySelector('#lastName').value
+            const address = form.querySelector('#address').value
+            const city = form.querySelector('#city').value
+            const email = form.querySelector('#email').value
+            const contact = {
+                firstName: firstName,
+                lastName: lastName,
+                address: address,
+                city: city,
+                email: email
+            }
+            panier.orderPanier(contact).then((result) => {
+                if(result){
+                    window.location.href = 'order.html'
+                }
+            })
+            
+        })
+    }
+}
+
+if(path[path.length - 1].match(/(order\.html)/gm)){
+    if(localStorage.order != undefined){
+        const order = JSON.parse(localStorage.order)
+        const orderDiv = document.querySelector('#order')
+        const name = orderDiv.querySelector('h2')
+        const orderId = orderDiv.querySelector('.commande-link')
+        name.textContent = 'Merci ' + order.contact.firstName + ' !'
+        orderId.textContent = order.orderId
+    }
 }
