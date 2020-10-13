@@ -44,10 +44,16 @@ if(path[path.length - 1].match(/(index\.html)/gm) || path[path.length - 1].match
         articlesList.forEach((articleInfo) => {
             articles.push(new Article(articleInfo))
         })
+        
         articles.forEach((article) => {
             shop.appendChild(article.createBoutiqueArticle())
         })
     })
+    .catch((errorMessage) => {
+        const p = document.createElement('p')
+        p.textContent = errorMessage
+        shop.appendChild(p)
+    });
 }
 
 //Gestion de la page product
@@ -55,22 +61,26 @@ if(path[path.length - 1].match(/(product\.html)/gm)){
     //Récupere les données d'un article est le génère dans la page product
     Article.getArticleInfo($_GET('id')).then((article) => {
         product.appendChild(new Article(article).createProductArticle())
+    }).catch((error) => {
+        alert(error)
+        document.location.href = 'index.html'
     })
 }
 
 //Gestion de la page panier
 if(path[path.length - 1].match(/(panier\.html)/gm)){
 
+    const form = document.querySelector('.form')
+
     //regarder si le panier n'est pas vide et éffectue un traitement si non vide
-    if(localStorage['panier'] != null){
+    if(JSON.stringify(localStorage['panier']) != undefined){
         const panier =  new Panier(localStorage)
         panier.createPanier()
 
         //Ajoute un écouteur qui envoie un évenement a la soumission du formulaire.
-        const form = document.querySelector('.form')
+        
         form.addEventListener('submit', (e) => {
             e.preventDefault()
-            console.log(e)
             const firstName = form.querySelector('#firstName').value
             const lastName = form.querySelector('#lastName').value
             const address = form.querySelector('#address').value
@@ -91,6 +101,13 @@ if(path[path.length - 1].match(/(panier\.html)/gm)){
             
         })
     }
+    else{
+        form.addEventListener('submit', (e) => {
+            e.preventDefault()
+            alert('aucun item dans le panier.')
+            document.location.href = 'index.html'
+        })
+    }
 }
 
 //Gestion de la page order
@@ -103,5 +120,9 @@ if(path[path.length - 1].match(/(order\.html)/gm)){
         const orderId = orderDiv.querySelector('.commande-link')
         name.textContent = 'Merci ' + order.contact.firstName + ' !'
         orderId.textContent = order.orderId
+        delete localStorage['order']
+    }
+    else{
+        document.location.href = 'panier.html'
     }
 }

@@ -197,25 +197,43 @@ export default class Article{
     //Méthode qui récupère les informations de tout les articles de l'api (ou un seul élément si un id lui est spécifié)
     static getArticleInfo(id = ''){
         return new Promise((resolve, reject) => {
-            if(id != null){
-                const request = new XMLHttpRequest()
-                request.open('GET', 'http://localhost:3000/api/teddies/' + id)
-                request.addEventListener('readystatechange', (e) => {
-                    if(request.readyState == '4'){
-                        resolve(JSON.parse(request.response))
-                    }
-                })
-                request.send()
+            if(id != ''){
+                try{
+                    const request = new XMLHttpRequest()
+                    request.open('GET', 'http://localhost:3000/api/teddies/' + id)
+                    request.addEventListener('readystatechange', (e) => {
+                        if(request.readyState == '4'){
+                            if(request.status < 300 && request.status >= 200){
+                                if(request.response != null){
+                                    resolve(JSON.parse(request.response))
+                                }
+                                else{
+                                    reject('Aucun article disponible.')
+                                }
+                            }
+                            else{
+                                reject('Probleme de liaison avec le server')
+                            }
+                        }
+                    })
+                    request.send()
+                }
+                catch{(e) => {
+                    reject(e.message)
+                }}
             }
-
 
             else{
                 const request = new XMLHttpRequest()
                 request.open('GET', 'http://localhost:3000/api/teddies')
                 request.addEventListener('readystatechange', (e) => {
                     if(request.readyState == '4'){
-                        const response = JSON.parse(request.response)
-                        resolve(response)
+                        if(request.response != ''){
+                            resolve(JSON.parse(request.response))
+                        }
+                        else{
+                            reject('Aucun article disponible ou une erreur de liaison au server est survenue.')
+                        }
                     }
                 })
                 request.send()
