@@ -3,6 +3,7 @@ import Article from './Article.js'
 export default class Panier{
     panierDiv = document.querySelector('.cart')
     
+    //Construction de l'objet panier a partir du localStorage donner en paramètre
     constructor(storage){
         if(storage.panier != undefined){
             this.panier = JSON.parse(storage.panier)
@@ -12,6 +13,8 @@ export default class Panier{
         }
     }
 
+
+    //Envoie de la commande à l'API.
     orderPanier(contact){
         const self = this
         return new Promise((resolve, reject) => {
@@ -34,6 +37,7 @@ export default class Panier{
         })
     }
 
+    //Création des Article du panier qui seront affichés.
     createPanier(){
         const keys = Object.keys(this.panier)
         keys.forEach(async (key) => {
@@ -43,6 +47,7 @@ export default class Panier{
         })
     }
 
+    //Méthode qui met a jour dans l'objet panier les quantité modifié depuis l'écran
     updateQuantity(id, quantity){
         if(quantity > 0){
             this.panier[id].quantity = parseInt(quantity, 10)
@@ -54,6 +59,7 @@ export default class Panier{
         }
     }
 
+    //Méthode gérant la suppression d'un article de la zone panier.
     deleteArticle(id){
         if(delete this.panier[id]){
             this.updateStorage()
@@ -61,8 +67,8 @@ export default class Panier{
         }
     }
 
+    //Envoie des information de l'objet panier dans le localStorage pour le maintenir à jour
     updateStorage(){
-        console.log()
         if(Object.keys(this.panier).length > 0){
             localStorage['panier'] = JSON.stringify(this.panier)
             this.updateTotalPrice()
@@ -74,6 +80,7 @@ export default class Panier{
         }
     }
 
+    //Méthode qui modifie le prix total du panier ainsi que le nombre d'article.
     updateTotalPrice(){
         const keys = Object.keys(this.panier)
         let priceTotal = 0

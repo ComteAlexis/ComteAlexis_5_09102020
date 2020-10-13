@@ -1,4 +1,5 @@
 export default class Article{
+    //Construction de l'objet Article à partir des informations donner en paramètre
     constructor(info){
         this.id = info._id
         this.name = info.name

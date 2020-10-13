@@ -5,6 +5,8 @@ const shop = document.querySelector('.shop')
 const product = document.querySelector('#article')
 let article = []
 
+//Fonction qui divise l'url en plusieur morceau.
+//ex 'orinoco.fr/fr' devien un tableau ['orinoco.fr', 'fr']
 function arrayParam(path){
     let pathUrl = path.split('/')
     for(let i = 0; i < pathUrl.length; i++){
@@ -15,8 +17,10 @@ function arrayParam(path){
     }
     return pathUrl
 }
+
 const path = arrayParam(window.location.pathname)
 
+//Fonction qui regarde l'url de la page et cherche les paramètre lui étant donné
 function $_GET(param) {
 	var vars = {};
 	window.location.href.replace( location.hash, '' ).replace( 
@@ -32,7 +36,9 @@ function $_GET(param) {
 	return vars;
 }
 
+//Gestion de la page index
 if(path[path.length - 1].match(/(index\.html)/gm) || path[path.length - 1].match(/(\.html)/gm) == null){
+    //Récupere toutes les information des articles dans l'API et créait et rend les articles à l'écran.
     Article.getArticleInfo().then((articlesList) => {
         let articles = []
         articlesList.forEach((articleInfo) => {
@@ -44,17 +50,23 @@ if(path[path.length - 1].match(/(index\.html)/gm) || path[path.length - 1].match
     })
 }
 
+//Gestion de la page product
 if(path[path.length - 1].match(/(product\.html)/gm)){
+    //Récupere les données d'un article est le génère dans la page product
     Article.getArticleInfo($_GET('id')).then((article) => {
         product.appendChild(new Article(article).createProductArticle())
     })
 }
 
+//Gestion de la page panier
 if(path[path.length - 1].match(/(panier\.html)/gm)){
+
+    //regarder si le panier n'est pas vide et éffectue un traitement si non vide
     if(localStorage['panier'] != null){
         const panier =  new Panier(localStorage)
         panier.createPanier()
 
+        //Ajoute un écouteur qui envoie un évenement a la soumission du formulaire.
         const form = document.querySelector('.form')
         form.addEventListener('submit', (e) => {
             e.preventDefault()
@@ -81,7 +93,9 @@ if(path[path.length - 1].match(/(panier\.html)/gm)){
     }
 }
 
+//Gestion de la page order
 if(path[path.length - 1].match(/(order\.html)/gm)){
+    //Vérifie si une commande à été passé, si oui le remerci et génére une page lui donnant sont id de commande.
     if(localStorage.order != undefined){
         const order = JSON.parse(localStorage.order)
         const orderDiv = document.querySelector('#order')
