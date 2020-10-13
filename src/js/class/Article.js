@@ -8,6 +8,8 @@ export default class Article{
         this.color = info.colors
     }
 
+
+//Méthode servant à la création de l'élément article qui sera afficher dans la page index.html
     createBoutiqueArticle(){
         const shopItem = document.createElement('div')
         const redirectLinkItem = document.createElement('a')
@@ -34,6 +36,7 @@ export default class Article{
 
     }
 
+//Méthode servant à la création de l'élément article qui sera afficher dans la page product.html
     createProductArticle(){
         const product = document.createElement('div')
         const productImage = document.createElement('div')
@@ -118,6 +121,7 @@ export default class Article{
         return this.article
     }
 
+    //Méthode servant à la création de l'élément article qui sera afficher dans la page panier.html
     createPanierArticle(panier){
         const self = this
         this.parent = panier.panierDiv
@@ -189,8 +193,8 @@ export default class Article{
         return this.article
     }
 
+    //Méthode qui récupère les informations de tout les articles de l'api (ou un seul élément si un id lui est spécifié)
     static getArticleInfo(id = ''){
-        let result = []
         return new Promise((resolve, reject) => {
             if(id != null){
                 const request = new XMLHttpRequest()
@@ -215,20 +219,6 @@ export default class Article{
                 })
                 request.send()
             }
-        })
-    }
-
-    static getOneArticle(id){
-        return new Promise((resolve, reject) => {
-            const request = new XMLHttpRequest()
-            request.open('GET', 'http://localhost:3000/api/teddies/' + id)
-            request.addEventListener('readystatechange', (e) => {
-                if(request.readyState == '4'){
-                    const response = request.response
-                    resolve(response)
-                }
-            })
-            request.send()
         })
     }
 }

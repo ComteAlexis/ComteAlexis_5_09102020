@@ -37,8 +37,8 @@ export default class Panier{
     createPanier(){
         const keys = Object.keys(this.panier)
         keys.forEach(async (key) => {
-            const articleInfo = await Article.getOneArticle(key)
-            const article = new Article(JSON.parse(articleInfo))
+            const articleInfo = await Article.getArticleInfo(key)
+            const article = new Article(articleInfo)
             this.panierDiv.appendChild(article.createPanierArticle(this))
         })
     }
@@ -78,8 +78,7 @@ export default class Panier{
         const keys = Object.keys(this.panier)
         let priceTotal = 0
         keys.forEach(async (key) => {
-            let result = await Article.getOneArticle(key)
-            result = JSON.parse(result)
+            let result = await Article.getArticleInfo(key)
             priceTotal += this.panier[key].quantity * result.price / 100
             this.totalPrice.textContent = priceTotal + '€'
         })
