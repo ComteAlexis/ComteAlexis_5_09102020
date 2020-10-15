@@ -21,35 +21,33 @@
         <div class="cart">
             
         </div>
-        <div class="valider-commande">
-            <form class='form' action="order.html" method='POST'>
-                <div class="form form__group">
-                    <div class="form form__input">
-                        <label for="firstName">Prénom: </label><input required type="text" id='firstName'>
-                    </div>
-                    <div class="form form__input">
-                        <label for="lastName">Nom: </label><input required type="text" id='lastName'>
-                    </div>
+        <form class='form' action="order.html" method='POST'>
+            <div class="form form__group">
+                <div class="form form__input">
+                    <label for="firstName">Prénom: </label><input required type="text" id='firstName'>
                 </div>
                 <div class="form form__input">
-                    <label for="address">Addresse: </label><input required type="text" id='address'>
+                    <label for="lastName">Nom: </label><input required type="text" id='lastName'>
                 </div>
-                <div class="form form__input">
-                    <label for="email">e-Mail: </label><input required type="email" id='email'>
+            </div>
+            <div class="form form__input">
+                <label for="address">Addresse: </label><input required type="text" id='address'>
+            </div>
+            <div class="form form__input">
+                <label for="email">e-Mail: </label><input required type="email" id='email'>
+            </div>
+            <div class="form form__input">
+                <label for="city">Ville: </label><input required type="text" id='city'>
+            </div>
+            <div class="total">
+                <h2>Total de votre commande:</h2>
+                <div class="total total__desc">
+                    <p>Sous Total<br>(<span>Aucun article</span>)</p>
+                    <p>0€</p>
                 </div>
-                <div class="form form__input">
-                    <label for="city">Ville: </label><input required type="text" id='city'>
-                </div>
-                <div class="total">
-                    <h2>Total de votre commande:</h2>
-                    <div class="total total__desc">
-                        <p>Sous Total<br>(<span>Aucun article</span>)</p>
-                        <p>0€</p>
-                    </div>
-                    <input type='submit' value='Valider ma commande' class="btn btn--cart-submit">
-                </div>
-            </form>
-        </div>
+                <input type='submit' value='Valider ma commande' class="btn btn--cart-submit">
+            </div>
+        </form>
         
     </section>
 

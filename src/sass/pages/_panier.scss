@@ -30,9 +30,7 @@
 
 #panier{
     @media screen and (min-width: map-get($map: $breackpoint, $key: 'tablette')){
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
+        display: flex;
     }
-
-    flex: 1;
+        flex: 1;
 }

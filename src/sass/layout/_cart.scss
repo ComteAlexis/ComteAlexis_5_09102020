@@ -1,7 +1,10 @@
 .cart{
+    flex: 1;
+
+
     &.cart__item{
         max-width: 1200px;
-        margin: 0 auto;
+        margin: 10px auto;
         box-sizing: border-box;
         padding: 0 20px;
         display: grid;
@@ -9,6 +12,7 @@
         gap: 10px;
 
         &.cart__item__image{
+            margin: 0;
             display: flex;
             justify-content: center;
             align-items: center;

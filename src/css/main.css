@@ -282,9 +282,12 @@ footer ul li a {
   color: #DB8D34;
 }
 
+.cart {
+  flex: 1;
+}
 .cart.cart__item {
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 10px auto;
   box-sizing: border-box;
   padding: 0 20px;
   display: grid;
@@ -292,6 +295,7 @@ footer ul li a {
   gap: 10px;
 }
 .cart.cart__item.cart__item__image {
+  margin: 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -419,8 +423,7 @@ footer ul li a {
 }
 @media screen and (min-width: 1200px) {
   #panier {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    display: flex;
   }
 }
 
