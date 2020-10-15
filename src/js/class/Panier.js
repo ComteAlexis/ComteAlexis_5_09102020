@@ -77,6 +77,7 @@ export default class Panier{
             delete localStorage['panier']
             this.totalPrice.textContent = "0€"
             this.articleNumber.textContent = 'Aucun article'
+            location.reload()
         }
     }
 
