@@ -32,7 +32,6 @@ export default class Panier{
                     resolve(true)
                 }
             }
-
             request.send(JSON.stringify(body))
         })
     }

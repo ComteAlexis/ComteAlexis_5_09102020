@@ -118,9 +118,19 @@ if(path[path.length - 1].match(/(order\.html)/gm)){
         const orderDiv = document.querySelector('#order')
         const name = orderDiv.querySelector('h2')
         const orderId = orderDiv.querySelector('.commande-link')
+        const productsTab = JSON.parse(localStorage['order']).products
+        const priceSpan = orderDiv.querySelector('p>span')
+        console.log(priceSpan)
+        let finalPrice = 0
         name.textContent = 'Merci ' + order.contact.firstName + ' !'
         orderId.textContent = order.orderId
-        delete localStorage['order']
+        
+        for(let i = 0; i < productsTab.length; i++){
+            finalPrice += productsTab[i].price / 100
+            if(i === productsTab.length - 1){
+                priceSpan.textContent = finalPrice + '€'
+            }
+        }
     }
     else{
         document.location.href = 'panier.html'
