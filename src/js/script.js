@@ -129,6 +129,7 @@ if(path[path.length - 1].match(/(order\.html)/gm)){
             finalPrice += productsTab[i].price / 100
             if(i === productsTab.length - 1){
                 priceSpan.textContent = finalPrice + '€'
+                delete localStorage['order']
             }
         }
     }
