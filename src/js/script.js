@@ -119,11 +119,14 @@ if(path[path.length - 1].match(/(order\.html)/gm)){
         const name = orderDiv.querySelector('h2')
         const orderId = orderDiv.querySelector('.commande-link')
         const productsTab = JSON.parse(localStorage['order']).products
-        const priceSpan = orderDiv.querySelector('p>span')
+        const priceSpan = orderDiv.querySelector('span.price')
+        const nameSpan = orderDiv.querySelector('span.name')
+
         console.log(priceSpan)
         let finalPrice = 0
         name.textContent = 'Merci ' + order.contact.firstName + ' !'
         orderId.textContent = order.orderId
+        nameSpan.textContent = order.firstName
         
         for(let i = 0; i < productsTab.length; i++){
             finalPrice += productsTab[i].price / 100
